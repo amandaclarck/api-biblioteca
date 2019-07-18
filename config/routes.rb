@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   get 'books', action: :index, to: 'books#index'
   post 'create', action: :create, to: 'books#create'
   get 'show/:id', action: :show, to: 'books#show'
+  post 'update', action: :update, to: 'books#update'
+
 end
