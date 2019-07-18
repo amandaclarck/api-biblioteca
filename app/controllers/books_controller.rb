@@ -19,8 +19,17 @@ class BooksController < ApplicationController
 		render json: { status: 200, data: @book }, status: :ok
 	end
 	
+	def update
+		@book = Book.find(params[:id])
+		if @book.update(book_params)
+		  render json: { status: 200, message: 'Book updated!', data: @book }, status: :ok
+		else
+		  render json: { status: 422, message: 'Book not updated', data: @book.errors }, status: :unprocessable_entity
+		end
+	end
+
 	private
 	def book_params
 		params.require(:book).permit(:title, :price, :genre)
-	end
+	end	
 end
